@@ -9,4 +9,4 @@
 |Register The Roles Core
 |-----------------------
 */
-require($_SERVER['DOCUMENT_ROOT'].'/app/Core/Roles.php');
+require($_SERVER['DOCUMENT_ROOT'].'/app/core/Roles.php');
