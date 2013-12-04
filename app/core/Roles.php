@@ -22,3 +22,4 @@ require 'Autoloder.php';
 |********
 */
 new Autoloder;
+new Router;
