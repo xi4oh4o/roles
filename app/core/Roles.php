@@ -8,14 +8,14 @@
 |---------------------
 |register config files
 |---------------------
-*/
-require_once __DIR__.'/../config/config.php';
+ */
+require __DIR__.'/../config/config.php';
 /*
 |--------------------
 |register auto loader
 |--------------------
 */
-require_once 'Autoloder.php';
+require 'Autoloder.php';
 /*
 |********
 |Initlize
