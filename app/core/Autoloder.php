@@ -7,12 +7,18 @@
 class Autoloder
 {
     public function __construct() {
-        spl_autoload_register(array($this, 'loader'));
+        spl_autoload_register(array($this, 'loaderCore'));
+        spl_autoload_register(array($this, 'loaderModels'));
     }
 
-    private function loader($className) {
-        if ( is_file( CORE_PATH . $className.'.php' )) {
+    private function loaderCore($className) {
+        if ( is_file( CORE_PATH . $className.'.php' ))
             require CORE_PATH . $className.'.php';
+    }
+
+    private function loaderModels($className) {
+        if ( is_file( MODEL_PATH . $className.'.php' )) {
+            require MODEL_PATH . $className.'.php';
         } else {
             throw new exception( "unable to load $className. ");
         }
