@@ -2,9 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>Roles Manager</title>
+    <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>css/style.css">
 </head>
 <body>
-    Hello
+<div id="container">
+<?php
+    require 'login.php';
+?>
+</div>
 </body>
 </html>
