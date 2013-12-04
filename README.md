@@ -2,13 +2,15 @@
 
 Base on PHP MVC pattern and MySQL of User Manager System
 
-> Coding ability test
+> Coding ability Test
 
 #### Use development tools
 ***
 * Vim
 * PhpStorm
 * Sublime Text 3
+* Trello
+* Zsh & Git & iTerm
 * G7 coffee & Old St white coffee & South Korean KJ citron tea
 
 #### Use development platform
