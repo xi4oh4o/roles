@@ -10,10 +10,13 @@
 | Unit test User model crud function
 |------------------------------------
  */
+require '../../models/User.php';
 class UserTest extends PHPUnit_Framework_TestCase
 {
     public function testCreate()
     {
+        $user = new User;
+        $this->assertTrue(User::loginVertify());
     }
 
     public function testRead()
