@@ -8,7 +8,7 @@ Base on PHP MVC pattern and MySQL of User Manager System
 ***
 * Vim
 * PhpStorm
-* Sublime Text 3
+* Sublime Text
 * Trello
 * Zsh & Git & iTerm
 * G7 coffee & Old St white coffee & South Korean KJ citron tea
