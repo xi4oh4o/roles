@@ -11,9 +11,10 @@ class Autoloder
     }
 
     private function loader($classname) {
-        if( is_file( $classname.'php' )):
+        if ( is_file( $classname.'php' )) {
             require_once $classname.'.php';
-        else:
+        } else {
             throw new exception( "unable to load $classname. ");
+        }
     }
 }
