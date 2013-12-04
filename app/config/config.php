@@ -15,6 +15,7 @@ defined( 'CORE_PATH' ) or define( 'CORE_PATH', APP_PATH.'core/');
 defined( 'CONTROLLER_PATH' ) or define( 'CONTROLLER_PATH', APP_PATH.'controllers/');
 defined( 'MODEL_PATH' ) or define( 'MODEL_PATH', APP_PATH.'models/');
 defined( 'VIEW_PATH' ) or define( 'VIEW_PATH', APP_PATH.'views/');
+defined( 'ASSETS_PATH' ) or define( 'ASSETS_PATH', 'assets/');
 /*
 |----------
 |DEBUG MODE
