@@ -14,11 +14,17 @@ defined( 'CONF_PATH' ) or define( 'CONF_PATH', APP_PATH.'config/');
 defined( 'CORE_PATH' ) or define( 'CORE_PATH', APP_PATH.'core/');
 defined( 'VIEW_PATH' ) or define( 'VIEW_PATH', APP_PATH.'views/');
 /*
+|----------
+|DEBUG MODE
+|----------
+*/
+defined( 'DEBUG_MODE' ) or define( 'DEBUG_MODE', true);
+/*
 |------------------
 |database configure
 |------------------
 */
 define( 'DB_USER', 'roles');
 define( 'DB_PASS', '912913');
-define( 'STRDSN', 'mysql:host=localhost;dbname=roles' );
+define( 'DB_DSN', 'mysql:host=localhost;dbname=roles' );
 
