@@ -10,11 +10,11 @@ class Autoloder
         spl_autoload_register(array($this, 'loader'));
     }
 
-    private function loader($classname) {
-        if ( is_file( $classname.'php' )) {
-            require_once $classname.'.php';
+    private function loader($className) {
+        if ( is_file( CORE_PATH . $className.'.php' )) {
+            require CORE_PATH . $className.'.php';
         } else {
-            throw new exception( "unable to load $classname. ");
+            throw new exception( "unable to load $className. ");
         }
     }
 }
