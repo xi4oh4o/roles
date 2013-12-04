@@ -1,0 +1,36 @@
+<?php
+/**
+ * Roles - Router
+ * @package Roles
+ * @author Howe Isamu <xi4oh4o@gmail.com>
+ * Simple implementation controller require
+ */
+class Router
+{
+    protected $urlPATH, $controllerName, $actionName;
+    function __construct() {
+        // Get the path from the URI parameter
+        $this->urlPATH = $_SERVER['REQUEST_URI'];
+        $params = explode( '/', $this->urlPATH );
+        //Set the default path parameter
+        if ( $params ) {
+            $this->controllerName = empty( $params[1] ) ? 'site' : $params[1];
+            if ( count($params) > 1 ) {
+                $this->actionName = empty( $params[2] ) ? 'index' : $params[2];
+            }
+        }
+        $this->dispatch();
+    }
+    public function dispatch() {
+        //Capitalize the first letter transformation URI path.
+        $controllerClassName = ucfirst( $this->controllerName )."Controller";
+        //Load controller files.
+        $controllerFile = CONTROLLER_PATH . "/$controllerClassName.php";
+        require_once $controllerFile;
+        //Initialize the controller and perform the action.
+        $controller = new $controllerClassName;
+        $action = $this->actionName;
+        $action .= "Action";
+        $controller->$action();
+    }
+}
