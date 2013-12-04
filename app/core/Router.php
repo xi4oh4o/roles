@@ -21,6 +21,13 @@ class Router
         }
         $this->dispatch();
     }
+
+    private function disponseView( Controller $controller, $actionReturnData ) {
+        if ( !is_bool( $actionReturnData ) ) {
+            $controller->loadView( $actionReturnData );
+        }
+    }
+
     public function dispatch() {
         //Capitalize the first letter transformation URI path.
         $controllerClassName = ucfirst( $this->controllerName )."Controller";
@@ -29,8 +36,10 @@ class Router
         require_once $controllerFile;
         //Initialize the controller and perform the action.
         $controller = new $controllerClassName;
+        $controller->_init( $this->controllerName, $this->actionName );
         $action = $this->actionName;
         $action .= "Action";
-        $controller->$action();
+        $actionReturnData = $controller->$action();
+        $this->disponseView( $controller, $actionReturnData );
     }
 }
