@@ -1,0 +1,25 @@
+@charset 'utf-8';
+/* designer by Howe */
+
+/* Global Style
+---------------------------------*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: none;
+    outline: none;
+    color: #000;
+}
+
+img {
+    text-decoration: none;
+    border: none;
+    border-radius: 3px;
+}
+
+body {
+    background: #f1f5f8 url(../static/bg.png);
+}
