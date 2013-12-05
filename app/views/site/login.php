@@ -1,13 +1,10 @@
 <div id="login">
-<form id="login-form" action="/user/login" method="post">
-    <label for="Username">Username</label>
-    <input name="username" id="Username" type="text">
-    <div class="errorMessage" id="UserErrorMessage"></div>
-
-    <label for="Password">Password</label>
-    <input name="password" id="Password" type="password">
-    <div class="errorMessage" id="PassErrorMessage"></div>
-
+<form id="login-form" action="/user/vertify" method="post">
+    <label for="LoginBoxem">Username</label>
+    <input name="username" id="LoginBoxem" type="text" onblur="toolkit.Check.loginNull()">
+    <label for="LoginBoxPs">Password</label>
+    <input name="password" id="LoginBoxPs" type="password" onblur="toolkit.Check.loginNull()">
+    <div class="errorMessage" id="LoginErrorMessage"></div>
     <div class="row buttons">
     <input type="submit" name="loginBtn" value="Login">
     </div>
