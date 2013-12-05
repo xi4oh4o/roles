@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule !^.*?\.(jpg|jpeg|gif|png|css)$ index.php [NC]
+RewriteRule !^.*?\.(jpg|jpeg|gif|png|css|js)$ index.php [NC]
