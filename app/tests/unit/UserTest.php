@@ -16,7 +16,7 @@ class UserTest extends PHPUnit_Framework_TestCase
     public function testCreate()
     {
         $user = new User;
-        $this->assertTrue(User::loginVertify( $username, $password ));
+        $this->assertTrue(User::createUser( $username, $password ));
     }
 
     public function testRead()
@@ -29,6 +29,11 @@ class UserTest extends PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
+    }
+
+    public function testVertify()
+    {
+    
     }
 }
 
