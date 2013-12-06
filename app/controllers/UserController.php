@@ -6,6 +6,8 @@
  */
 class UserController extends Controller
 {
-    function vertifyAction() {
+    function verifyAction() {
+        if (isset($_POST))
+        User::verifyUser( $_POST );
     }
 }
