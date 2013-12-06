@@ -11,12 +11,11 @@
 |------------------------------------
  */
 require '../../models/User.php';
+require '../../core/Db.php';
 class UserTest extends PHPUnit_Framework_TestCase
 {
     public function testCreate()
     {
-        $user = new User;
-        $this->assertTrue(User::createUser( $username, $password ));
     }
 
     public function testRead()
@@ -33,7 +32,12 @@ class UserTest extends PHPUnit_Framework_TestCase
 
     public function testVertify()
     {
-    
+        $args = array(
+            'username' => 'admin',
+            'password' => 'admin'
+        );
+
+        $this->assertEquals( 'succeed', User::verifyUser( $args ) );
     }
 }
 
