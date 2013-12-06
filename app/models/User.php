@@ -19,7 +19,7 @@ class User
         $salt      = mt_rand( 100000, 999999 );
         $hash      = md5( $password );
         $salt_hash = md5( $salt.$hash );
-        $dbh = Db::GetPDO( DB_DSN, DB_USER, DB_PASS, NULL);
+        $Db = Db::GetPDO( DB_DSN, DB_USER, DB_PASS, NULL);
         $insertUser = "INSERT INTO `roles`.`roles_user` (`uid`,
             `username`, `email`, `bio`, `groups`) VALUES (NULL,
             '{$username}', '{$email}', '{$bio}', '{$groups}')";
@@ -31,7 +31,30 @@ class User
 
     public static function deleteUser() {}
 
-    public static function vertifyUser( $args ) {
-        
+    public static function verifyUser( $args ) {
+        $username = $args['username'];
+        $password = $args['password'];
+        //Get PDO Object
+        $Db = Db::GetPDO( DB_DSN, DB_USER, DB_PASS, NULL);
+        //Select User and Salt
+        $selectUserSQL = "
+            SELECT
+            `username`,`salt`,`hash`
+            FROM
+            `roles_user`,`roles_salt`
+            WHERE `username` = '{$username}'";
+        //Prepare and Execute SQL statment
+        $queryUser = $Db->prepare($selectUserSQL);
+        try {
+            $queryUser->execute();
+        } catch (Exception $e) { return; }
+        $user = $queryUser->fetch();
+
+        //Generate Salt hash Used to verify
+        $salt = $user['salt'];
+        $hash = md5( $password );
+        $salt_hash = md5( $salt.$hash );
+        //Print the verify return value
+        echo $salt_hash == $user['hash'] ? 'succeed' : 'failure';
     }
 }
