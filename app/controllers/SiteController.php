@@ -7,6 +7,5 @@
 class SiteController extends Controller
 {
     function indexAction() {
-
     }
 }
