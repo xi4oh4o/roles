@@ -11,6 +11,7 @@ require_once( $_SERVER['DOCUMENT_ROOT'].'/app/config/config.php' );
  * @access public
  * @global object $GLOBALS['PDOS'][$Key]
  * @param string $strDSN, $strUser, $strPass, $arParms
+ * @example $dbh = Db::GetPDO( DB_DSN, DB_USER, DB_PASS, NULL);
  * @return instance unique PDO
  */
 class Db {
