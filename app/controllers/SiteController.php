@@ -7,5 +7,13 @@
 class SiteController extends Controller
 {
     function indexAction() {
+        /**
+         * Verify the login
+         * If true then ump straight to the panel.
+         */
+        session_start();
+        if ( isset( $_SESSION['is_login']) && $_SESSION['is_login'] === true ) {
+            header('Location: /user/panel');
+        }
     }
 }
