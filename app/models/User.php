@@ -50,7 +50,7 @@ class User
                 <td>".$value['username']."</td>
                 <td>".$value['email']."</td>
                 <td>".$value['bio']."</td>
-                <td><a href='edit/{$value['uid']}'>Edit</a> | <a href='delete/{$value['uid']}'>Delete</a></td>
+                <td><a href='edit/{$value['username']}'>Edit</a> | <a href='delete/{$value['uid']}'>Delete</a></td>
                 </tr>";
         }
     }
