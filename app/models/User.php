@@ -24,13 +24,46 @@ class User
             `username`, `email`, `bio`, `groups`) VALUES (NULL,
             '{$username}', '{$email}', '{$bio}', '{$groups}')";
     }
-
-    public static function readUser() {}
+    /**
+     * listUser method
+     * For all the user data is returned.
+     */
+    public static function listUser() {
+        //Get PDO Object
+        $Db = Db::GetPDO( DB_DSN, DB_USER, DB_PASS, NULL);
+        //Select All User
+        $selectAllUserSQL = "
+            SELECT
+            `uid`,`username`,`email`,`bio`,`groups`
+            FROM
+            `roles_user`
+            WHERE 1";
+        $queryAllUser = $Db->prepare( $selectAllUserSQL );
+        try {
+            $queryAllUser->execute();
+        } catch (Exception $e) { return ;}
+        $AllUserResult = $queryAllUser->fetchAll();
+        echo '<tr><th>Username</th><th>Email</th><th>Bio</th><th>Operation</th></tr>';
+        foreach ($AllUserResult as $value) {
+            echo "
+                <tr>
+                <td>".$value['username']."</td>
+                <td>".$value['email']."</td>
+                <td>".$value['bio']."</td>
+                <td><a href='edit/{$value['uid']}'>Edit</a> | <a href='delete/{$value['uid']}'>Delete</a></td>
+                </tr>";
+        }
+    }
 
     public static function updateUser() {}
 
     public static function deleteUser() {}
 
+    /**
+     * Validation of the $args parameter
+     * @param array $args
+     * @return string succeed or failure.
+     */
     public static function verifyUser( $args ) {
         $username = $args['username'];
         $password = $args['password'];
@@ -39,7 +72,7 @@ class User
         //Select User and Salt
         $selectUserSQL = "
             SELECT
-            `username`,`salt`,`hash`
+            `username`,`groups`,`salt`,`hash`
             FROM
             `roles_user`,`roles_salt`
             WHERE `username` = '{$username}'";
@@ -48,13 +81,22 @@ class User
         try {
             $queryUser->execute();
         } catch (Exception $e) { return; }
-        $user = $queryUser->fetch();
+        $userResult = $queryUser->fetch();
 
         //Generate Salt hash Used to verify
-        $salt = $user['salt'];
+        $salt = $userResult['salt'];
         $hash = md5( $password );
         $salt_hash = md5( $salt.$hash );
         //Print the verify return value
-        echo $salt_hash == $user['hash'] ? 'succeed' : 'failure';
+        if ( $salt_hash == $userResult['hash'] ) {
+            //Set Session
+            session_start();
+            $_SESSION['groups']   = $userResult['groups'];
+            $_SESSION['is_login'] = true;
+            //Return Ajax interaction
+            echo 'succeed';
+        } else {
+            echo 'failure';
+        }
     }
 }
