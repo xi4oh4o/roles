@@ -11,7 +11,7 @@
 a {
     text-decoration: none;
     outline: none;
-    color: #000;
+    color: #555;
 }
 
 img {
@@ -24,35 +24,7 @@ body {
     background: #f1f5f8 url(../static/bg.png);
 }
 
-table {
-    margin: 10px;
-    border: 2px solid;
-}
-
-td {
-    padding: 3px;
-    border: 1px solid;
-}
-
-.buttons input {
-    background: none repeat scroll 0 0 #80C3F7;
-    border: 1px solid #1D80CF;
-    border-radius: 5px;
-    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(50, 50, 50, 0.05);
-    color: #FFFFFF;
-    cursor: pointer;
-    display: block;
-    font-size: 1em;
-    line-height: 26px;
-    padding: 0 15px;
-    text-align: center;
-    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
-    width: 160px;
-    height: 23px;
-    margin: 30px auto;
-}
-
-/* header
+/* Header style
 ----------------------------------*/
 #header {
     background-color: #0767C8;
@@ -69,10 +41,9 @@ td {
     padding: 5px;
     text-align: center;
 }
-
-/* Login Form
-----------------------------------*/
-#login {
+/* Public layout
+---------------------------------*/
+#login,#user_list {
     text-align: center;
     background-color: #fff;
     width: 560px;
@@ -80,6 +51,9 @@ td {
     margin: 0 auto;
     border-radius: 0 0 15px 15px;
 }
+
+/* Login Form
+----------------------------------*/
 
 #login h3 {
     color: #888;
@@ -108,8 +82,58 @@ td {
     color: #555;
 }
 
+#login-form h6 {
+    color: #ccc;
+    font: italic 9px "arial";
+}
+
 #LoginErrorMessage {
     color: red;
+}
+
+#login-form .buttons input ,input#logoutBtn {
+    background: none repeat scroll 0 0 #80C3F7;
+    border: 1px solid #1D80CF;
+    border-radius: 5px;
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.3) inset, 0 1px 1px rgba(50, 50, 50, 0.05);
+    color: #FFFFFF;
+    cursor: pointer;
+    display: block;
+    font-size: 1em;
+    line-height: 26px;
+    padding: 0 15px;
+    text-align: center;
+    text-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
+    width: 160px;
+    height: 28px;
+    margin: 30px auto;
+}
+
+#users {
+    text-align: center;
+    padding: 10px;
+}
+
+#user_list p {
+    color: #555;
+    font-size: 9px;
+}
+
+#users tr {
+    text-align: left;
+}
+
+#users th {
+    color: #0767C8;
+}
+
+#users td {
+    text-align: left;
+    font-size: 11px;
+    width: 200px;
+    color: #888;
+    padding: 3px 0;
+    border-bottom: 1px dotted;
 }
 
 /* Footer
