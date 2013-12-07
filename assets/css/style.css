@@ -23,3 +23,13 @@ img {
 body {
     background: #f1f5f8 url(../static/bg.png);
 }
+
+table {
+    margin: 10px;
+    border: 2px solid;
+}
+
+td {
+    padding: 3px;
+    border: 1px solid;
+}
