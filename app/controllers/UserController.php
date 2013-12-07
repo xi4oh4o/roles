@@ -28,9 +28,9 @@ class UserController extends Controller
     function panelAction() {
         session_start();
         if ( isset( $_SESSION['is_login']) && $_SESSION['is_login'] === true ) {
-            if ( isset( $_POST['condition'] ) && $_POST['condition'] == 'getList' ) {
-            }
+            $this->is_login = true;
         } else {
+            $this->is_login = false;
             echo "Unauthorized access";
         }
     }
@@ -45,6 +45,24 @@ class UserController extends Controller
                 User::listUser();
             }
         }
+    }
+    /**
+     * edit Action
+     * According to the user editor
+     * @todo According to the parameters to achieve user information editing.
+     */
+    function editAction() {
+        $params = explode( '/',$_SERVER['REQUEST_URI'] );
+        $this->tips = "<h3>You are editing user " . $params['3'] . "</h3>";
+    }
+    /**
+     * delete Action
+     * According to the user id to delete the user
+     * @todo According to the parameters to delete the user
+     */
+    function deleteAction() {
+        $params = explode( '/', $_SERVER['REQUEST_URI'] );
+        $this->tips = "<h3>You are delete user " . $params['3'] . "</h3>";
     }
     /**
      * logout Action
