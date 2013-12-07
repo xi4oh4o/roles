@@ -8,7 +8,6 @@
     <div class="errorMessage" id="LoginErrorMessage"></div>
     <div class="row buttons">
     <input type="button" name="LoginBtn" value=" Log-in " onclick="Ajax.Query.login()">
-    <h6>hit: demo demo</h6>
     </div>
 </form>
 </div>
