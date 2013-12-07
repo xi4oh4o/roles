@@ -70,6 +70,7 @@ Ajax.Query.login = function() {
     xmlHttp.send(post);
 
     function stateChanged() {
+            //@todo readyState Incompatible IE8
             if(xmlHttp.readyState=4||xmlHttp.readyState=="complete"){
                 if(xmlHttp.responseText == "succeed") {
                     window.location.href="/user/panel";
@@ -100,6 +101,7 @@ Ajax.Query.userList = function() {
     xmlHttp.send(post);
 
     function stateChanged() {
+            //@todo readyState Incompatible IE8
             if(xmlHttp.readyState=4||xmlHttp.readyState=="complete"){
                 if(xmlHttp.responseText != null) {
                     document.getElementById("users").innerHTML=xmlHttp.responseText;
