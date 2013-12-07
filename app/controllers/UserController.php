@@ -8,6 +8,12 @@ class UserController extends Controller
 {
 
     /**
+     * Index Action
+     * User the default
+     */
+    function indexAction() {
+    }
+    /**
      * Verify Action
      * Validation of the POST parameter
      * and set session
@@ -42,9 +48,17 @@ class UserController extends Controller
         session_start();
         if ( isset( $_SESSION['is_login']) && $_SESSION['is_login'] === true ) {
             if ( isset( $_POST['condition'] ) && $_POST['condition'] == 'getList' ) {
-                User::listUser();
+                User::listUser( $_SESSION['groups'] );
             }
         }
+    }
+    /**
+     * view Action
+     * The view action shows detailed information
+     */
+    function viewAction() {
+        $params = explode( '/',$_SERVER['REQUEST_URI'] );
+        $this->tips = "<h3>You are view detailed user：" . $params['3'] . "</h3>";
     }
     /**
      * edit Action
@@ -53,7 +67,7 @@ class UserController extends Controller
      */
     function editAction() {
         $params = explode( '/',$_SERVER['REQUEST_URI'] );
-        $this->tips = "<h3>You are editing user " . $params['3'] . "</h3>";
+        $this->tips = "<h3>You are editing user：" . $params['3'] . "</h3>";
     }
     /**
      * delete Action
@@ -62,7 +76,7 @@ class UserController extends Controller
      */
     function deleteAction() {
         $params = explode( '/', $_SERVER['REQUEST_URI'] );
-        $this->tips = "<h3>You are delete user " . $params['3'] . "</h3>";
+        $this->tips = "<h3>You are delete user：" . $params['3'] . "</h3>";
     }
     /**
      * logout Action
