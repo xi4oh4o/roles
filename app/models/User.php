@@ -28,7 +28,7 @@ class User
      * listUser method
      * For all the user data is returned.
      */
-    public static function listUser() {
+    public static function listUser( $args ) {
         //Get PDO Object
         $Db = Db::GetPDO( DB_DSN, DB_USER, DB_PASS, NULL);
         //Select All User
@@ -49,15 +49,30 @@ class User
                 <tr>
                 <td>".$value['username']."</td>
                 <td>".$value['email']."</td>
-                <td>".$value['bio']."</td>
+                <td>".$value['bio']."</td>";
+            if ( $args == 0 ) {
+                echo "
                 <td><a href='view/{$value['username']}'>View</a> | <a href='edit/{$value['username']}'>Edit</a> | <a href='delete/{$value['uid']}'>Delete</a></td>
                 </tr>";
+            } else {
+                echo "
+                    <td><a href='view/{$value['username']}'>View</a> | <a href='edit/{$value['username']}'>Edit</a> | Delete</td>
+                    ";
+            }
         }
     }
 
-    public static function updateUser() {}
+    public static function viewUser() {
+        //@todo According to the URI parameter query details
+    }
 
-    public static function deleteUser() {}
+    public static function updateUser() {
+        //@todo According to the URI parameter update specific users
+    }
+
+    public static function deleteUser() {
+        //@todo According to the URI to delete a particular user
+    }
 
     /**
      * Validation of the $args parameter
@@ -72,23 +87,34 @@ class User
         //Select User and Salt
         $selectUserSQL = "
             SELECT
-            `username`,`groups`,`salt`,`hash`
+            `uid`,`username`,`groups`
             FROM
-            `roles_user`,`roles_salt`
+            `roles_user`
             WHERE `username` = '{$username}'";
         //Prepare and Execute SQL statment
-        $queryUser = $Db->prepare($selectUserSQL);
+        $queryUser = $Db->prepare( $selectUserSQL );
         try {
             $queryUser->execute();
         } catch (Exception $e) { return; }
         $userResult = $queryUser->fetch();
-
+        $selectSalt = "
+            SELECT
+            `salt`,`hash`
+            FROM
+            `roles_salt`
+            WHERE `sid` = '{$userResult['uid']}'
+        ";
+        $querySalt = $Db->prepare( $selectSalt );
+        try {
+            $querySalt->execute();
+        } catch (Exception $e) { return; }
+        $saltResult = $querySalt->fetch();
         //Generate Salt hash Used to verify
-        $salt = $userResult['salt'];
+        $salt = $saltResult['salt'];
         $hash = md5( $password );
         $salt_hash = md5( $salt.$hash );
         //Print the verify return value
-        if ( $salt_hash == $userResult['hash'] ) {
+        if ( $salt_hash == $saltResult['hash'] ) {
             //Set Session
             session_start();
             $_SESSION['groups']   = $userResult['groups'];
