@@ -8,9 +8,16 @@
 </head>
 <body>
 <div id="container">
+
+<div id="header">
+<h3>Roles Manager</h3>
+</div>
 <?php
     require 'login.php';
 ?>
+<div id="footer">
+© 2013 Shinetech, Inc.❤
+</div>
 </div>
 </body>
 </html>
