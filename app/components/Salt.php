@@ -9,6 +9,9 @@
  * @example Salt::generateSalt( $password )
  * @author Howe Isamu <xi4oh4o@gmail.com>
  */
+/**
+ * Had been abolished
+ */
 class Salt
 {
     /**
